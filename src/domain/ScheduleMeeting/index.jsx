@@ -3,6 +3,7 @@ import {
     Container,
     DateField,
     FormControl,
+    TextAreaField,
     TextField,
     Row,
 } from '../../shared/components';
@@ -35,17 +36,23 @@ export const ScheduleMeeting = () => {
                             />
                         </Row>
                         <Row> 
-                            <TextField 
-                                type="text"
+                            <TextAreaField 
                                 id="description"
                                 label="Description"
-                                defaultValue="Description"
-                                title="please enter the description"
-                                size={50}
+                                rows={10}
+                                cols={50}
+                            />
+                        </Row>
+                        <Row> 
+                            <TextField 
+                                type="text"
+                                id="attendees"
+                                label="Attendees"
+                                title="please enter the attendes"
                             />
                         </Row>
                         <Row>
-                            <Button> Submit </Button>
+                            <Button type="submit"> Submit </Button>
                         </Row>
                     </FormControl>
                 </Row>
