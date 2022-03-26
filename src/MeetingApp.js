@@ -9,8 +9,8 @@ export function MeetingApp() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="schedule" element={<ScheduleMeeting />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/schedule/:day" element={<ScheduleMeeting />} />
       </Routes>
     </div>
   );

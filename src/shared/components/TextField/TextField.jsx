@@ -7,7 +7,7 @@ export const TextField = ({
 }) => {
     return (
         <>
-            <label for={id}>{label}</label>
+            <label htmlFor={id}>{label}</label>
             <input type={type} 
                    id={id}  
                    name={id} 
