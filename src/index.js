@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { Login } from './domain/Login';
+import { MeetingApp } from './MeetingApp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Login />
+      <BrowserRouter>
+        <MeetingApp />
+      </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
