@@ -1,0 +1,27 @@
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #282828;
+}
+
+.navbar li:focus {  
+    border: 2px solid #2091e3;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li a.active {
+    background-color: #5fbae9;
+}

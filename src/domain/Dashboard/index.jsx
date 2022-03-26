@@ -1,24 +1,20 @@
-import { useCallback } from 'react';
-import { useNavigate } from "react-router-dom";
 
 import { Calendar } from '../../shared/components';
-
+import { Home } from '../../layouts/index';
+import { useDashboard } from './hook';
 
 export const Dashboard = () => { 
 
-    let navigate = useNavigate();
-
-    const handleClick = useCallback((e) => {
-        let value = e.target.outerText;
-        navigate(`/schedule/${value}`);
-    }, [navigate]);
+    const { handleClick } = useDashboard();
 
     return (
         <>
-            <h1>Dashboard</h1>          
-            <Calendar 
-                onClick={handleClick}
-            />
+            <Home>
+                <h1>Dashboard</h1>          
+                <Calendar 
+                    onClick={handleClick}
+                />
+            </Home>
         </>
     )
  }

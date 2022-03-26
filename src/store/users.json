@@ -1,9 +1,0 @@
-{ 
-"users": [{
-        "user": "rene",
-        "password": "123"
-    }, {
-        "user": "admin",
-        "password": "1"
-    }]
-}

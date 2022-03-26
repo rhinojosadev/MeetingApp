@@ -13,10 +13,20 @@
     }
 }
 
+h3 {
+    margin: 0;
+    padding-bottom: 3%;
+}
+
 .calendar__wrapper {
     text-align: center;
     font-size: 1rem;
 }
+
+.calendar__wrapper span:focus {
+    border: solid 2px #2091e3;
+}
+
 .calendar__header {
     display: flex;
     font-size: 2rem;
@@ -64,7 +74,21 @@
     display: flex;
 }
 
+.calendar__day_digit {
+    min-width: 25px;
+}
+
+.calendar__day_circle {
+    height: 10px;
+    width: 10px;
+    background-color: #5bbbdb;
+    border-radius: 50%;
+    position: relative;
+    left: -19%;
+    bottom: -33%;
+}
+
 .calendar__day:hover {
-    background-color: #add8e6;
+    background-color: #add8e65c;
 }
 

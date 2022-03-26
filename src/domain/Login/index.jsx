@@ -8,7 +8,11 @@ import {
 
 import styles from './index.module.css';
 
+import { useLogin } from './hook';
+
 export const Login = () => {
+    const { form, handleSubmit, handleInputChange } = useLogin();
+
     return(
         <>
             <Container className={styles.login}>
@@ -19,8 +23,11 @@ export const Login = () => {
                     <Row> 
                         <TextField 
                             type="text"
-                            id="name"
+                            name="user"
+                            id="user"
                             label=""
+                            value={form.user}
+                            onChange={handleInputChange}
                             defaultValue="Username"
                             title="please enter your username"
                             size={25}
@@ -31,17 +38,18 @@ export const Login = () => {
                             type="password"         
                             id="password"
                             label=""
+                            value={form.password}
+                            onChange={handleInputChange}
                             defaultValue="Password"
                             title="please enter your password"
                             size={25}
                         />
                     </Row>
                     <Row>
-                        <Button> Sign in </Button>
+                        <Button onClick={(e) => handleSubmit(e, form)}> Sign in </Button>
                     </Row>
                 </FormControl>
             </Container>
-
         </>
     )
 }
