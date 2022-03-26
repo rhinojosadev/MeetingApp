@@ -1,0 +1,16 @@
+.login {
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 30px 60px 0 rgb(0 0 0 / 30%);
+    background: #fff;
+    max-width: 450px;
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login__legend {
+
+}
