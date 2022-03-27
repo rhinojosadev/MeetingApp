@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import styles from './index.module.css';
 
 export const Navbar = ({ tabs }) => {
@@ -8,9 +10,7 @@ export const Navbar = ({ tabs }) => {
                     {tabs.map( (tab) => {
                         return ( <>
                          <li  role="none">
-                             <a  role="menuitem" tabindex="0" href={tab.url}>
-                                {tab.name}
-                             </a>
+                            <Link  role="menuitem" tabindex="0"  to={tab.url}>{tab.name}</Link>
                         </li>
                         </>)
                     })}

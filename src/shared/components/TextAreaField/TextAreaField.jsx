@@ -2,12 +2,13 @@ export const TextAreaField = ({
     label,
     id,
     rows,
-    cols
+    cols,
+    ...rest
 }) => {
     return (
         <>
             <label htmlFor={id}>{label}</label>
-            <textarea id={id} name={id} rows={rows} cols={cols}></textarea>
+            <textarea id={id} name={id} rows={rows} cols={cols} {...rest}></textarea>
         </>
     )
 }

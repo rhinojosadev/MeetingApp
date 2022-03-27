@@ -1,15 +1,19 @@
+import {
+  ADD_CALENDAR
+} from '../actions/calendar';
+
 const initState = {
-    users: {}, 
-    repos: {}
+    meetings: [], 
 }
 
 export default function calendar(state=initState, action) {
     switch (action.type) {
-      case 'INCREMENT':
-        return state.users = { "rene": { id: 1 }}
-      case 'DECREMENT':
-        return state.users = { "jhon": { id: 1 }}
+      case ADD_CALENDAR:
+        return {
+                ...state,
+                meetings: [ ...state.meetings, { ...action.payload }  ]
+              };
       default:
         return state;
     }
-  }
+}
