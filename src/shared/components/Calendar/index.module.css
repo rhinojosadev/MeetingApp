@@ -23,8 +23,10 @@ h3 {
     font-size: 1rem;
 }
 
-.calendar__wrapper span:focus {
-    border: solid 2px #2091e3;
+.calendar__wrapper span:focus,
+.calendar__wrapper span:focus-visible {
+    border: solid 2px #2faaff;
+    outline: none;
 }
 
 .calendar__header {
@@ -52,6 +54,7 @@ h3 {
     display: flex;
     flex-wrap: wrap;
     margin-top: 5px;
+    padding-bottom: 10px;
     border-bottom: 1px solid grey;
 }
 
@@ -72,7 +75,15 @@ h3 {
     align-items: center;
     justify-content: center;
     display: flex;
+    position: relative;
 }
+
+.calendar__day:focus,
+.calendar__day:focus-visible {
+    border: solid 2px #2faaff;
+    outline: none;
+}
+
 
 .calendar__day_digit {
     min-width: 25px;
@@ -83,9 +94,8 @@ h3 {
     width: 10px;
     background-color: #5bbbdb;
     border-radius: 50%;
-    position: relative;
-    left: -19%;
-    bottom: -33%;
+    position: absolute;
+    bottom: -14%;
 }
 
 .calendar__day:hover {

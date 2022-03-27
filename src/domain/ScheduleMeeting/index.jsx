@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { 
     Button,
     Container,
@@ -9,30 +11,44 @@ import {
 } from '../../shared/components';
 import { Home } from '../../layouts/index';
 import { useScheduleMeeting } from './hook';
+import styles from './index.module.css';
 
 export const ScheduleMeeting = () => { 
-    const { handleSubmit, handleChange, inputs } = useScheduleMeeting();
+    const { handleSubmit, 
+            handleChange, 
+            setInputs,
+            inputs,
+            calendar,
+            labels } = useScheduleMeeting();
+
+    useEffect(() => {
+        if(calendar) {
+            setInputs({
+                "date": calendar.date,
+                "name": calendar.name,
+                "description": calendar.description,
+                "id": calendar.id,
+                "attendees": calendar.attendees
+            });
+        };
+    }, [calendar, setInputs]);
 
     return (
     <>
         <Home>
-            <Container>
-                <Row>
-                    <h1>Schedule Meeting</h1>   
-                </Row> 
+            <Container className={styles.schedule}>   
                 <Row>
                     <FormControl aria-labelledby="schedule-meeting-form"> 
-                        <Row>
-                            <legend id="schedule-meeting-form">Schedule </legend>
-                        </Row>
-                        <Row> 
+                        <legend id="schedule-meeting-form"> {labels.title} </legend>
+                        <Row mb={10}> 
                             <DateField  
                                     id="date" 
+                                    className={styles.schedule__date}
                                     onChange={handleChange}
                                     value={inputs.date || ""} 
                                     label="Date" />
                         </Row>
-                        <Row> 
+                        <Row mb={10}> 
                             <TextField 
                                 type="text"
                                 id="name"
@@ -43,7 +59,7 @@ export const ScheduleMeeting = () => {
                                 size={25}
                             />
                         </Row>
-                        <Row> 
+                        <Row mb={10}> 
                             <TextAreaField 
                                 id="description"
                                 label="Description"
@@ -53,7 +69,7 @@ export const ScheduleMeeting = () => {
                                 cols={50}
                             />
                         </Row>
-                        <Row> 
+                        <Row mb={10}> 
                             <TextField 
                                 type="text"
                                 id="attendees"
@@ -63,8 +79,8 @@ export const ScheduleMeeting = () => {
                                 title="please enter the attendes"
                             />
                         </Row>
-                        <Row>
-                            <Button type="submit" onClick={handleSubmit}> Submit </Button>
+                        <Row mb={10}>
+                            <Button type="submit" onClick={(e) => handleSubmit(e, labels.type)}> {labels.submit} </Button>
                         </Row>
                     </FormControl>
                 </Row>

@@ -1,4 +1,5 @@
 export const ADD_CALENDAR = 'calendar/add';
+export const UPDATE_CALENDAR = 'calendar/update';
 
 export const addCalendar = (items, dispatch) => {
     const id = items.date.split('-')[2];
@@ -8,3 +9,10 @@ export const addCalendar = (items, dispatch) => {
         payload: { ...items, id  }
     });
 };
+
+export const updateCalendar = (items, dispatch) => {
+    dispatch({
+        type: UPDATE_CALENDAR,
+        payload: { ...items }
+    });
+}

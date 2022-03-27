@@ -6,11 +6,11 @@ export const Navbar = ({ tabs }) => {
     return (
         <>
             <nav aria-label="Meeting Schedule App">
-                <ul  role="menubar" className={styles.navbar}>
+                <ul role="menubar" className={styles.navbar}>
                     {tabs.map( (tab) => {
                         return ( <>
-                         <li  role="none">
-                            <Link  role="menuitem" tabindex="0"  to={tab.url}>{tab.name}</Link>
+                         <li tabIndex={0} role="none">
+                            <Link role="menuitem" to={tab.url}>{tab.name}</Link>
                         </li>
                         </>)
                     })}

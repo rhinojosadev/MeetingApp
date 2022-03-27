@@ -6,7 +6,17 @@ export const useDashboard = () => {
 
     const handleClick = useCallback((e) => {
         let value = e.target.outerText;
-        navigate(`/schedule/${value}`);
+        let countClicks = e.detail;
+        switch (countClicks) {
+            case 1:
+                //show meeting popup
+                break;
+            case 2:
+                navigate(`/schedule/${value}`);
+                break;
+            default:
+                break; 
+        }
     }, [navigate]);
 
 

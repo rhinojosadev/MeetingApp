@@ -30,13 +30,12 @@ export const Calendar = ({ onClick, reservedDates }) => {
                          <>
                             {value > 0 && (
                                 <li tabIndex={0} className={styles.calendar__day} onClick={onClick} >
-                                    <span className={styles.calendar__day_digit}> { value } </span>
-                                    {reservedDates.includes(value.toString()) && (
-                                       <span className={styles.calendar__day_circle}></span> 
-                                    )}
-                               
-                                </li>
-         
+                                        <span className={styles.calendar__day_digit}> { value } 
+                                        </span>
+                                        {reservedDates.includes(value.toString()) && (
+                                            <span className={styles.calendar__day_circle}></span> 
+                                        )}
+                                </li>           
                                 )
                             }
                             {value === 0 && (

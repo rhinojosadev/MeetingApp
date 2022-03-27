@@ -17,13 +17,12 @@ export const Login = () => {
         <>
             <Container className={styles.login}>
                 <FormControl aria-labelledby="signin-form">
-                    <Row>
-                        <legend id="signin-form">Meeting App Sign In</legend>
-                    </Row>
+                    <legend id="signin-form">The Meeting App</legend>
                     <Row> 
                         <TextField 
                             type="text"
                             name="user"
+                            className={styles.login__username}
                             id="user"
                             label=""
                             value={form.user}
@@ -37,6 +36,7 @@ export const Login = () => {
                         <TextField 
                             type="password"         
                             id="password"
+                            className={styles.login__password}
                             label=""
                             value={form.password}
                             onChange={handleInputChange}
@@ -45,9 +45,7 @@ export const Login = () => {
                             size={25}
                         />
                     </Row>
-                    <Row>
-                        <Button onClick={(e) => handleSubmit(e, form)}> Sign in </Button>
-                    </Row>
+                    <Button type="submit" onClick={(e) => handleSubmit(e, form)}> Sign in </Button>
                 </FormControl>
             </Container>
         </>

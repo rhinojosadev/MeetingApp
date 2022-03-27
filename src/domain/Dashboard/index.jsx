@@ -11,8 +11,7 @@ export const Dashboard = () => {
 
     return (
         <>
-            <Home>
-                <h1>Dashboard</h1>          
+            <Home>       
                 <Calendar 
                     reservedDates={reservedDates}
                     onClick={handleClick}
