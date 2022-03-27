@@ -1,4 +1,4 @@
-import { Calendar } from '../../shared/components';
+import { Calendar } from './Calendar/index';
 import { Home } from '../../layouts/index';
 import { useDashboard } from './hook';
 import { useGetCalendar, getReservedDates } from '../../redux/selectors/calendar';
@@ -13,9 +13,11 @@ export const Dashboard = () => {
         <>
             <Home>       
                 <Calendar 
+                    calendar={calendar}
                     reservedDates={reservedDates}
                     onClick={handleClick}
                 />
+
             </Home>
         </>
     )

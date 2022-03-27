@@ -2,11 +2,13 @@ export const ADD_CALENDAR = 'calendar/add';
 export const UPDATE_CALENDAR = 'calendar/update';
 
 export const addCalendar = (items, dispatch) => {
-    const id = items.date.split('-')[2];
+    const id = parseInt(items.date.split('-')[2]).toString();
+
+    const displayPopup = false;
 
     dispatch({
         type: ADD_CALENDAR,
-        payload: { ...items, id  }
+        payload: { ...items, id, displayPopup }
     });
 };
 
