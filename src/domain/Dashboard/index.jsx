@@ -1,19 +1,13 @@
-import { useEffect } from 'react';
-
 import { Calendar } from '../../shared/components';
 import { Home } from '../../layouts/index';
 import { useDashboard } from './hook';
-import { useGetCalendar } from '../../redux/selectors/calendar';
+import { useGetCalendar, getReservedDates } from '../../redux/selectors/calendar';
 
 
 export const Dashboard = () => { 
     const { handleClick } = useDashboard();
     const calendar = useGetCalendar();
-    const reservedDates = [];
-
-    useEffect(() => {
-        console.log(calendar);
-    }, [calendar]);
+    const reservedDates = getReservedDates(calendar.meetings);
 
     return (
         <>
