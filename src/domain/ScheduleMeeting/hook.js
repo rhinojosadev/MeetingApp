@@ -25,16 +25,70 @@ export const useScheduleMeeting = () => {
         }
     }
 
+    const initForm  = {
+        date: "required",
+        name: "required",
+        description: "",
+        id: "",
+        attendees: "required"
+    }
+
+    const handleValidation = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        const isRequired = initForm[name] === "required" ? true : false;
+        if (isRequired) {
+            switch(event.target.type) {
+                case "date":
+                    if (value.length === 0) {
+                        alert(`The field ${name} is required`);  
+                        break;
+                    }  else {
+                        const allowedMonthNumber = 2 // This is March our current Date
+                        const currentMonth = new Date(value.toString()).getMonth();
+                        if (allowedMonthNumber !== currentMonth) {
+                            alert(`The date should be on March`);
+                            break;
+                        } else {
+                            initForm[name] = "";
+                        }
+                    }
+                    break;
+                default:
+                    if (value.length === 0) {
+                        alert(`The field ${name} is required`);  
+                        break;
+                    }  else {
+                        initForm[name] = "";
+                        break;
+                    }
+            }
+        }
+    }
+
+    const validateForm = () => {
+        return !(Object.values(initForm).includes("required"));
+    }
+
     const handleSubmit = (event, type) => {
         event.preventDefault();
         switch(type) {
             case labels.add.type: 
-                addCalendar(inputs, dispatch);
-                navigate('/dashboard');
+                if (validateForm()) {
+                    addCalendar(inputs, dispatch);
+                    navigate('/dashboard');
+                } else {
+                    alert("The form is not valid, please fill the required fields");
+                }
                 break;
             case labels.edit.type:
-                updateCalendar(inputs, dispatch);
-                navigate('/dashboard');
+                if (validateForm()) {
+                    updateCalendar(inputs, dispatch);
+                    navigate('/dashboard');
+                }
+                else {
+                    alert("The form is not valid, please fill the required fields");
+                }
                 break;
             default:
                 break;
@@ -65,6 +119,7 @@ export const useScheduleMeeting = () => {
     return {
         handleChange,
         handleSubmit,
+        handleValidation,
         setInputs,
         inputs,
         calendar: getCalendarScheduleEdit(),

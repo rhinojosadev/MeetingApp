@@ -16,6 +16,7 @@ import styles from './index.module.css';
 export const ScheduleMeeting = () => { 
     const { handleSubmit, 
             handleChange, 
+            handleValidation,
             setInputs,
             inputs,
             calendar,
@@ -43,18 +44,22 @@ export const ScheduleMeeting = () => {
                         <Row mb={10}> 
                             <DateField  
                                     id="date" 
+                                    required
                                     className={styles.schedule__date}
                                     onChange={handleChange}
+                                    onBlur={handleValidation}
                                     value={inputs.date || ""} 
                                     label="Date" />
                         </Row>
                         <Row mb={10}> 
                             <TextField 
-                                type="text"
                                 id="name"
+                                type="text"
+                                required
                                 label="Name"
                                 value={inputs.name || ""} 
                                 onChange={handleChange}
+                                onBlur={handleValidation}
                                 title="please enter your name"
                                 size={25}
                             />
@@ -76,6 +81,7 @@ export const ScheduleMeeting = () => {
                                 label="Attendees"
                                 value={inputs.attendees || ""} 
                                 onChange={handleChange}
+                                onBlur={handleValidation}
                                 title="please enter the attendes"
                             />
                         </Row>
