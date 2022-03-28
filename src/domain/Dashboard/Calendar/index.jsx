@@ -33,7 +33,7 @@ export const Calendar = ({ onClick, reservedDates, calendar }) => {
                      return(
                          <>
                             {value > 0 && (
-                                <li tabIndex={0} className={styles.calendar__day} onClick={(e) => onClick(e, calendar)} >
+                                <li tabIndex={0} className={styles.calendar__day} onClick={(e) => onClick(e, calendar, value)} >
                                         <span className={styles.calendar__day_digit}> { value } 
                                         </span>
                                         {hasReservedDate(reservedDates, value) && (
@@ -46,7 +46,7 @@ export const Calendar = ({ onClick, reservedDates, calendar }) => {
                                 )
                             }
                             {value === 0 && (
-                                <li aria-hidden="true" tabIndex={0} className={styles.calendar__day_empty} >
+                                <li aria-hidden="true" className={styles.calendar__day_empty} >
                                 </li>
                             )}
                          </>

@@ -9,9 +9,9 @@ export const Navbar = ({ tabs }) => {
                 <ul role="menubar" className={styles.navbar}>
                     {tabs.map( (tab) => {
                         return ( <>
-                         <li tabIndex={0} role="none">
-                            <Link role="menuitem" to={tab.url}>{tab.name}</Link>
-                        </li>
+                         <li tabIndex={0} role="menuitem">
+                            <Link to={tab.url}>{tab.name}</Link>
+                         </li>
                         </>)
                     })}
                 </ul>

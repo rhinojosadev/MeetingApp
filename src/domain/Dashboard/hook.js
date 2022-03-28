@@ -11,10 +11,9 @@ export const useDashboard = () => {
     const dispatch = useDispatch();
     const { getCalendarReservedInfo } = useCalendar();
 
-    const handleClick = useCallback((e, calendar) => {
-        let value = e.target.outerText;
+    const handleClick = useCallback((e, calendar, day) => {
         let countClicks = e.detail;
-        let currentMeeting = getCalendarReservedInfo(calendar, value);
+        let currentMeeting = getCalendarReservedInfo(calendar, day);
 
         if (currentMeeting) {
             switch (countClicks) {
@@ -25,7 +24,7 @@ export const useDashboard = () => {
                 case 2:
                     currentMeeting.displayPopup = false;
                     updateCalendar(currentMeeting, dispatch);
-                    navigate(`/schedule/${value}`);
+                    navigate(`/schedule/${day}`);
                     break;
                 default:
                     break; 

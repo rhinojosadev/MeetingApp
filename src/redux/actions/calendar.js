@@ -3,7 +3,6 @@ export const UPDATE_CALENDAR = 'calendar/update';
 
 export const addCalendar = (items, dispatch) => {
     const id = parseInt(items.date.split('-')[2]).toString();
-
     const displayPopup = false;
 
     dispatch({

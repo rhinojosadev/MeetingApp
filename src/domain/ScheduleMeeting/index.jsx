@@ -18,6 +18,7 @@ export const ScheduleMeeting = () => {
             handleChange, 
             handleValidation,
             setInputs,
+            setFormState,
             inputs,
             calendar,
             labels } = useScheduleMeeting();
@@ -25,14 +26,20 @@ export const ScheduleMeeting = () => {
     useEffect(() => {
         if(calendar) {
             setInputs({
-                "date": calendar.date,
-                "name": calendar.name,
-                "description": calendar.description,
-                "id": calendar.id,
-                "attendees": calendar.attendees
+                date: calendar.date,
+                name: calendar.name,
+                description: calendar.description,
+                id: calendar.id,
+                attendees: calendar.attendees
             });
+            setFormState({
+                date: { required: true, value: calendar.date },
+                name: { required: true, value: calendar.name },
+                description: { required: false, value: calendar.description },
+                attendees: { required: true, value: calendar.attendees },
+            })
         };
-    }, [calendar, setInputs]);
+    }, [calendar, setInputs, setFormState]);
 
     return (
     <>
@@ -43,16 +50,20 @@ export const ScheduleMeeting = () => {
                         <legend id="schedule-meeting-form"> {labels.title} </legend>
                         <Row mb={10}> 
                             <DateField  
+                                    tabIndex={0}
                                     id="date" 
                                     required
                                     className={styles.schedule__date}
                                     onChange={handleChange}
                                     onBlur={handleValidation}
                                     value={inputs.date || ""} 
+                                    disabled={ calendar ? true : false}
+                                    aria-describedby="date"
                                     label="Date" />
                         </Row>
                         <Row mb={10}> 
                             <TextField 
+                                tabIndex={0}
                                 id="name"
                                 type="text"
                                 required
@@ -60,12 +71,13 @@ export const ScheduleMeeting = () => {
                                 value={inputs.name || ""} 
                                 onChange={handleChange}
                                 onBlur={handleValidation}
-                                title="please enter your name"
+                                aria-describedby="name"
                                 size={25}
                             />
                         </Row>
                         <Row mb={10}> 
                             <TextAreaField 
+                                tabIndex={0}
                                 id="description"
                                 label="Description"
                                 value={inputs.description || ""} 
@@ -76,13 +88,14 @@ export const ScheduleMeeting = () => {
                         </Row>
                         <Row mb={10}> 
                             <TextField 
+                                tabIndex={0}
                                 type="text"
                                 id="attendees"
                                 label="Attendees"
                                 value={inputs.attendees || ""} 
                                 onChange={handleChange}
                                 onBlur={handleValidation}
-                                title="please enter the attendes"
+                                aria-describedby="attendees"
                             />
                         </Row>
                         <Row mb={10}>

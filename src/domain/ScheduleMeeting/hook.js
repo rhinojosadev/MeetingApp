@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux'
 import { useNavigate, useLocation } from "react-router-dom";
 import { useGetCalendar, getCalendarById } from "../../redux/selectors/calendar";
@@ -6,7 +6,15 @@ import { useGetCalendar, getCalendarById } from "../../redux/selectors/calendar"
 import { addCalendar, updateCalendar } from '../../redux/actions/calendar';
 
 export const useScheduleMeeting = () => {
+    const initForm  = {
+        date: { required: true, value: "" },
+        name: { required: true, value: "" },
+        description: { required: false, value: "" },
+        attendees: { required: true, value: "" },
+    }
+
     const [inputs, setInputs] = useState({});
+    const [formState, setFormState]= useState(initForm);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -25,50 +33,66 @@ export const useScheduleMeeting = () => {
         }
     }
 
-    const initForm  = {
-        date: "required",
-        name: "required",
-        description: "",
-        id: "",
-        attendees: "required"
-    }
-
-    const handleValidation = (event) => {
-        const name = event.target.name;
+    const handleValidation = useCallback( (event) => {
+        let name = event.target.name;
         const value = event.target.value;
-        const isRequired = initForm[name] === "required" ? true : false;
-        if (isRequired) {
+        const currentForm = formState[name];
+  
+        if (value.length > 0 ) { 
+            setFormState({
+                ...formState,
+                [name]: { required: currentForm.required, value: value}  
+            });
+        }
+
+        if (currentForm.required) {
             switch(event.target.type) {
                 case "date":
                     if (value.length === 0) {
-                        alert(`The field ${name} is required`);  
+                        alert(`The field ${name} is required`); 
+                        setFormState({
+                            ...formState,
+                             [name]:{ required: currentForm.required, value: ""}  
+                        }); 
                         break;
                     }  else {
                         const allowedMonthNumber = 2 // This is March our current Date
                         const currentMonth = new Date(value.toString()).getMonth();
                         if (allowedMonthNumber !== currentMonth) {
                             alert(`The date should be on March`);
+                            setFormState({
+                                ...formState,
+                                 [name]: { required: currentForm.required, value: ""}   
+                            });
                             break;
-                        } else {
-                            initForm[name] = "";
-                        }
+                        } 
                     }
                     break;
                 default:
                     if (value.length === 0) {
                         alert(`The field ${name} is required`);  
+                        setFormState({
+                            ...formState,
+                             [name]: { required: currentForm.required, value: ""}  
+                        });
                         break;
-                    }  else {
-                        initForm[name] = "";
-                        break;
-                    }
+                    }  
             }
         }
-    }
+    }, [formState]);
 
-    const validateForm = () => {
-        return !(Object.values(initForm).includes("required"));
-    }
+    const validateForm = useCallback(() => {
+        let isValid = true;
+        const formValues = Object.values(formState);
+
+        for (let index = 0; index < formValues.length; index ++) {
+            if (formValues[index].required && formValues[index].value === "") {
+                isValid = false;
+                break;
+            } 
+        }
+        return isValid;
+    }, [formState])
 
     const handleSubmit = (event, type) => {
         event.preventDefault();
@@ -121,6 +145,7 @@ export const useScheduleMeeting = () => {
         handleSubmit,
         handleValidation,
         setInputs,
+        setFormState,
         inputs,
         calendar: getCalendarScheduleEdit(),
         labels: getLabels()
